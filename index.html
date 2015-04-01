@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>slider test page</title>
+    <script src="swiper.js"></script>
+    <style>
+        li {
+            height: 200px;
+            border-bottom: 1px solid #000;
+            font-size: 100px;
+            list-style: none;
+            line-height: 200px;
+            font-family: Arial;
+            padding: 0;
+            margin: 0;
+            background: #999;
+        }
+        
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li>
+            elem1
+        </li>
+        <li>
+            elem2
+        </li>
+        <li>
+            elem3
+        </li>
+        <li>
+            elem4
+        </li>
+        <li>
+            elem5
+        </li>
+        <li>
+            elem6
+        </li>
+        <li>
+            elem7
+        </li>
+        <li>
+            elem8
+        </li>
+        <li>
+            elem9
+        </li>
+        <li>
+            elem10
+        </li>
+        <li>
+            elem11
+        </li>
+        <li>
+            elem12
+        </li>
+    </ul>
+<script>
+    Swiper.init({
+        query: 'li',
+        list: true,
+        left: 200,
+        right: 200
+    });
+</script>
+
+</body>
+</html>
