@@ -1,14 +1,4 @@
 (function() {
-    var defaultOptions = {
-        duration: 200,
-        tolerance: 150,
-        time: 200,
-        width: 0,
-        dir: 1,
-        right: 0,
-        left: 0
-    };
-
     var msPointer = window.navigator.msPointerEnabled;
 
     var touch = {
@@ -60,6 +50,16 @@
     }
 
     var Swiper = function(options) {
+        var defaultOptions = {
+            duration: 200,
+            tolerance: 150,
+            time: 200,
+            width: 0,
+            dir: 1,
+            right: 0,
+            left: 0
+        };
+
         options = extend(defaultOptions, options || {});
 
         this.duration = options.duration;
@@ -69,36 +69,44 @@
         this.elem = options.elem;
         this.list = options.list;
         this.dir = options.dir;
+        this.group = options.group;
 
         this.right = options.right;
         this.left = options.left;
     };
 
     Swiper._elems = [];
+    Swiper.groupCounter = 0;
 
     Swiper.init = function(options) {
+        Swiper.groupCounter++;
+
         var elems = document.querySelectorAll(options.query);
+        var group = [];
 
         delete options.query;
 
         [].forEach.call(elems, function(elem){
-            var option = extend({elem: elem}, options);
+            var option = extend({elem: elem, group: Swiper.groupCounter}, options);
 
-            Swiper._elems.push(new Swiper(option));
+            group.push(new Swiper(option));
         });
 
         Swiper._bindEvents();
+        Swiper._elems = Swiper._elems.concat(group);
 
-        if (Swiper._elems.length === 1) {
-            return Swiper._elems[0];
+        if (group.length === 1) {
+            return group[0];
         }
 
-        return Swiper._elems;
+        return group;
     };
 
-    Swiper._closeAll = function() {
+    Swiper._closeAll = function(groupNumber) {
         Swiper._elems.forEach(function(swiper) {
-            swiper.close();
+            if (swiper.group === groupNumber) {
+                swiper.close();
+            }
         });
     };
 
@@ -120,7 +128,7 @@
         this.resetValue(e);
 
         if (this.list) {
-            Swiper._closeAll();
+            Swiper._closeAll(this.group);
         } else {
             this.close();
         }
@@ -206,9 +214,15 @@
     };
 
     Swiper._bindEvents = function() {
+        if (Swiper.eventBinded) {
+            return false;
+        }
+
         delegate(touch.move, 'touchMove');
         delegate(touch.end, 'touchEnd');
         delegate(touch.start, 'touchStart');
+
+        Swiper.eventBinded = true;
     };
 
     /**
@@ -240,6 +254,7 @@
     };
 
     Swiper.prototype.move = function() {
+        console.log(this.dir, this.right, this.delta);
         if ((this.dir > 0 && (this.delta < 0 || this.left === 0)) || (this.dir < 0 && (this.delta > 0 || this.right === 0))) {
             return false;
         }

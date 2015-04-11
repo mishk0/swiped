@@ -24,7 +24,23 @@
     </style>
 </head>
 <body>
-    <ul class="list">
+    one element:
+    <ul class="list1">
+        <li>
+            elem1
+        </li>
+    </ul>
+    group:
+    <ul class="list2">
+        <li>
+            elem1
+        </li>
+        <li>
+            elem1
+        </li>
+    </ul>
+    group with dependence:
+    <ul class="list3">
         <li>
             elem1
         </li>
@@ -63,8 +79,18 @@
         </li>
     </ul>
 <script>
-    Swiper.init({
-        query: 'li',
+    var a1 = Swiper.init({
+        query: '.list1 li',
+        right: 300
+    });
+
+    var a2 = Swiper.init({
+        query: '.list2 li',
+        left: 300
+    });
+
+    var a3 = Swiper.init({
+        query: '.list3 li',
         list: true,
         left: 200,
         right: 200
