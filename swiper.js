@@ -9,6 +9,14 @@
         left: 0
     };
 
+    var msPointer = window.navigator.msPointerEnabled;
+
+    var touch = {
+        start: msPointer ? 'MSPointerDown' : 'touchstart',
+        move: msPointer ? 'MSPointerMove' : 'touchmove',
+        end: msPointer ? 'MSPointerUp' : 'touchend'
+    };
+
     var prefix = (function () {
         var styles = window.getComputedStyle(document.documentElement, '');
         var pre = (Array.prototype.slice
@@ -198,9 +206,9 @@
     };
 
     Swiper._bindEvents = function() {
-        delegate('touchmove', 'touchMove');
-        delegate('touchend', 'touchEnd');
-        delegate('touchstart', 'touchStart');
+        delegate(touch.move, 'touchMove');
+        delegate(touch.end, 'touchEnd');
+        delegate(touch.start, 'touchStart');
     };
 
     /**
