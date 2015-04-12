@@ -253,7 +253,6 @@
     };
 
     Swiped.prototype.move = function() {
-        console.log(this.dir, this.right, this.delta);
         if ((this.dir > 0 && (this.delta < 0 || this.left === 0)) || (this.dir < 0 && (this.delta > 0 || this.right === 0))) {
             return false;
         }
