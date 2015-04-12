@@ -1,0 +1,25 @@
+{
+  "name": "swiped",
+  "version": "0.0.2",
+  "homepage": "https://github.com/mishk0/swiper",
+  "authors": [
+    "mishk0 <mokrushin.ms@yandex.ru>"
+  ],
+  "description": "touch swipe for your mobile application, written in vanilla JS",
+  "main": "./dist/swiped.js",
+  "ignore": [
+    ".*",
+    "package.json",
+    "node_modules",
+    "bower_components",
+    "tests"
+  ],
+  "keywords": [
+    "touch",
+    "swipe",
+    "mobile",
+    "slider",
+    "slide"
+  ],
+  "license": "MIT"
+}
