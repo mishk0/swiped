@@ -1,5 +1,5 @@
 {
-  "name": "swiped.js",
+  "name": "swiped",
   "version": "0.0.1",
   "description": "touch slide swipe for your mobile application, written in vanilla JS",
   "main": "./dist/swiped.js",
