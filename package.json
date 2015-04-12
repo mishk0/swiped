@@ -1,0 +1,31 @@
+{
+  "name": "swiped.js",
+  "version": "0.0.1",
+  "description": "touch slide swipe for your mobile application, written in vanilla JS",
+  "main": "./dist/swiped.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mishk0/swiped.git"
+  },
+  "keywords": [
+    "touch",
+    "swipe",
+    "mobile",
+    "slider"
+  ],
+  "author": "Mokrushin Mikhail",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mishk0/swiped/issues"
+  },
+  "homepage": "https://github.com/mishk0/swiped",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.10.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0"
+  }
+}

@@ -40,7 +40,7 @@
         var current = [].shift.call(arguments);
         var options = arguments[0];
 
-        for (i in options) {
+        for (var i in options) {
             if (options.hasOwnProperty(i)) {
                 current[i] = options[i];
             }
@@ -270,8 +270,8 @@
     Swiped.prototype.animation = function(x, duration) {
         duration = duration === undefined ? this.duration : duration;
 
-        this.elem.style.cssText = cssProps['transition'] + ':' + cssProps['transform'] + ' ' + duration + 'ms; ' +
-        cssProps['transform']  + ':' + 'translate3d(' + x + 'px, 0px, 0px)';
+        this.elem.style.cssText = cssProps.transition + ':' + cssProps.transform + ' ' + duration + 'ms; ' +
+        cssProps.transform  + ':' + 'translate3d(' + x + 'px, 0px, 0px)';
     };
 
     // expose Swiped
