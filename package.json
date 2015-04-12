@@ -1,7 +1,7 @@
 {
   "name": "swiped",
-  "version": "0.0.1",
-  "description": "touch slide swipe for your mobile application, written in vanilla JS",
+  "version": "0.0.2",
+  "description": "touch swipe for your mobile application, written in vanilla JS",
   "main": "./dist/swiped.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start"
@@ -14,7 +14,8 @@
     "touch",
     "swipe",
     "mobile",
-    "slider"
+    "slider",
+    "slide"
   ],
   "author": "Mokrushin Mikhail",
   "license": "MIT",
