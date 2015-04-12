@@ -1,5 +1,7 @@
 # Swiped.js
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/mishk0/Swiped/master/LICENSE)
+[![npm](http://img.shields.io/npm/v/swiped.svg?style=flat)](https://www.npmjs.com/package/swiped)
+
 
 [Demo](http://mishk0.github.io/swiped/) (use mobile or emulate touches mode on your browser)
 
