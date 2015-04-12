@@ -4,7 +4,7 @@
   "description": "touch slide swipe for your mobile application, written in vanilla JS",
   "main": "./dist/swiped.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/karma/bin/karma start"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,10 @@
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.10.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.5"
   }
 }
