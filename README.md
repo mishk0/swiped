@@ -47,6 +47,10 @@ for multiple:
     </li>
 </ul>
 ```
+for switch:
+```html
+<div class="foo"><span></span>element 16</div>
+```
 
 initialization for single element:
 ```js
@@ -62,5 +66,17 @@ var s2 = Swiped.init({
     list: true,
     left: 200,
     right: 200
+});
+```
+
+for switch:
+```js
+var s3 = Swiped.init({
+    query: '.foo',
+    left: 400
+});
+
+document.querySelector('.foo span').addEventListener('touchstart', function() {
+    s3.toggle();
 });
 ```
