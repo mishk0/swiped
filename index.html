@@ -3,97 +3,152 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>slider test page</title>
-    <script src="swiper.js"></script>
+    <script src="dist/swiped.js"></script>
     <style>
-        li {
+        body {
+            font-size: 50px;
+            font-family: Arial;
+            padding: 20px 20px 50px;
+        }
+        li, .foo {
             height: 200px;
-            border-bottom: 1px solid #000;
-            font-size: 100px;
+            padding: 0 50px;
             list-style: none;
             line-height: 200px;
-            font-family: Arial;
-            padding: 0;
-            margin: 0;
-            background: #999;
+            color: #fff;
+            margin: 0 0 2px;
         }
         
         ul {
-            margin: 0;
+            margin: 0 0 40px;
             padding: 0;
+        }
+        
+        .list1 li {
+            background: #f58160;
+        }
+        .list2 li {
+            background: #f9b15e;
+        }
+        .list3 li {
+            background: #97d7e8;
+        }
+        
+        .foo {
+            background: #b1d14f;
+            position: relative;
+            padding-left: 150px;
+            height: 300px;
+        }
+
+        .foo span {
+            position: absolute;
+            left: 30px;
+            top: 65px;
+            height: 50px;
+            width: 70px;
+            border-top: 10px solid #fff;
+            border-bottom: 10px solid #fff;
+        }
+
+        .foo span:after {
+            content: "";
+            border-top: 10px solid #fff;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            position: absolute;
+            height: 1px;
+        }
+
+        p {
+            margin: 50px 50px 20px;
         }
     </style>
 </head>
 <body>
-    one element:
+    <p>single element:</p>
     <ul class="list1">
         <li>
-            elem1
+            element 1
         </li>
     </ul>
-    group:
+    <p>multiple:</p>
     <ul class="list2">
         <li>
-            elem1
+            element 2
         </li>
         <li>
-            elem1
+            element 3
         </li>
     </ul>
-    group with dependence:
+    <p>multiple with dependence:</p>
     <ul class="list3">
         <li>
-            elem1
+            element 4
         </li>
         <li>
-            elem2
+            element 5
         </li>
         <li>
-            elem3
+            element 6
         </li>
         <li>
-            elem4
+            element 7
         </li>
         <li>
-            elem5
+            element 8
         </li>
         <li>
-            elem6
+            element 9
         </li>
         <li>
-            elem7
+            element 10
         </li>
         <li>
-            elem8
+            element 11
         </li>
         <li>
-            elem9
+            element 12
         </li>
         <li>
-            elem10
+            element 13
         </li>
         <li>
-            elem11
+            element 14
         </li>
         <li>
-            elem12
+            element 15
         </li>
     </ul>
+
+    <p>single element with trigger:</p>
+    <div class="foo"><span></span>element 16</div>
 <script>
-    var a1 = Swiper.init({
+    var a1 = Swiped.init({
         query: '.list1 li',
-        right: 300
+        right: 500
     });
 
-    var a2 = Swiper.init({
+    var a2 = Swiped.init({
         query: '.list2 li',
         left: 300
     });
 
-    var a3 = Swiper.init({
+    var a3 = Swiped.init({
         query: '.list3 li',
         list: true,
         left: 200,
         right: 200
+    });
+
+    var a4 = Swiped.init({
+        query: '.foo',
+        left: 400
+    });
+
+    document.querySelector('.foo span').addEventListener('touchstart', function() {
+        a4.toggle();
     });
 </script>
 

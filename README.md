@@ -1,13 +1,14 @@
-# Swiper.js
-[![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/mishk0/swiper/master/LICENSE)
+# Swiped.js
+[![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/mishk0/Swiped/master/LICENSE)
 
-[Demo](http://mishk0.github.io/swiper/) (use mobile or emulate touches mode on your browser)
+[Demo](http://mishk0.github.io/swiped/) (use mobile or emulate touches mode on your browser)
 
 ## API
 
-### Swiper(options)
+### Swiped(options)
 
-- `options` (object) - Options to configure a new instance of Swiper.
+- `options` (object) - Options to configure a new instance of Swiped.
+- `[options.query]` (string) - Query selector.
 - `[options.duration]` (number) - The time (milliseconds) to open/close the element. Default: `200`.
 - `[options.tolerance]` (number) - Default: `150`.
 - `[options.time]` (number) - Time for short swipe. Default: `200`.
@@ -17,11 +18,11 @@
 
 
 ```js
-var swiper = Swiper.init(options);
+var s = Swiped.init(options);
 
-swiper.open();
-swiper.close();
-swiper.toggle();
+s.open();
+s.close();
+s.toggle();
 ```
 
 ## Usage
@@ -49,14 +50,14 @@ for multiple:
 
 initialization for single element:
 ```js
-var s1 = Swiper.init({
+var s1 = Swiped.init({
     query: '.foo',
     right: 300
 });
 ```
 for multiple:
 ```js
-var s3 = Swiper.init({
+var s2 = Swiped.init({
     query: '.bar li',
     list: true,
     left: 200,
