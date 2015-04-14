@@ -4,6 +4,12 @@
 
 
 [Demo](http://mishk0.github.io/swiped/) (use mobile or emulate touches mode on your browser)
+## Installation
+
+```
+npm install swiped
+bower install swiped
+```
 
 ## API
 
