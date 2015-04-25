@@ -46,4 +46,13 @@ describe('swiped.js', function() {
             expect(this.s.delta).toEqual(212.5);
         });
     });
+
+    describe("#destroy", function() {
+        it("1", function() {
+            var s = new Swiped({});
+            Swiped._elems.push(s);
+            s.destroy();
+            expect(Swiped._elems.length).toEqual(0);
+        });
+    });
 });

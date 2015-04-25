@@ -1,6 +1,6 @@
 {
   "name": "swiped",
-  "version": "0.0.2",
+  "version": "0.1.2",
   "description": "touch swipe for your mobile application, written in vanilla JS",
   "main": "./dist/swiped.js",
   "scripts": {

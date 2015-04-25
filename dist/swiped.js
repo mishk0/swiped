@@ -146,7 +146,7 @@
 
         function trEnd() {
             cb.call(that);
-            node.removeEventListener(transitionEvent, trEnd)
+            node.removeEventListener(transitionEvent, trEnd);
         }
 
         node.addEventListener(transitionEvent, trEnd);
