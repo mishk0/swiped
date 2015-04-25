@@ -95,7 +95,7 @@ document.querySelector('.foo span').addEventListener('touchstart', function() {
 });
 ```
 
-## Implementation for "swipe to delete"
+#### Implementation for "swipe to delete"
 
 ```js
 Swiped.init({
