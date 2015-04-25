@@ -72,7 +72,7 @@
     var Swiped = function(o) {
         var defaultOptions = {
             duration: 200,
-            tolerance: 150,
+            tolerance: 50,
             time: 200,
             dir: 1,
             right: 0,
