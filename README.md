@@ -7,6 +7,14 @@
 
 <img src="https://i.imgur.com/EUT9r0U.gif" alt="swiped.js">
 
+## Features
+
+- Dependency-free.
+- Short & long swipe.
+- Swipe to delete.
+- Easy to use.
+- CSS transforms & transitions.
+
 ## Installation
 
 ```
