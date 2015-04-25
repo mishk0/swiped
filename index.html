@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <title>slider test page</title>
     <script src="dist/swiped.js"></script>
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1,width=device-width" />
     <style>
-        body {
-            font-size: 50px;
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
             font-family: Arial;
-            padding: 20px 20px 50px;
         }
         li, .foo {
-            height: 200px;
-            padding: 0 50px;
+            height: 60px;
+            padding: 0 10px;
             list-style: none;
-            line-height: 200px;
+            line-height: 60px;
             color: #fff;
             margin: 0 0 2px;
         }
         
         ul {
-            margin: 0 0 40px;
+            margin: 0 0 10px;
             padding: 0;
         }
         
@@ -37,24 +39,24 @@
         .foo {
             background: #b1d14f;
             position: relative;
-            padding-left: 150px;
-            height: 300px;
+            padding-left: 50px;
+            height: 150px;
         }
 
         .foo span {
             position: absolute;
-            left: 30px;
-            top: 65px;
-            height: 50px;
-            width: 70px;
-            border-top: 10px solid #fff;
-            border-bottom: 10px solid #fff;
+            left: 15px;
+            top: 17px;
+            height: 15px;
+            width: 20px;
+            border-top: 3px solid #fff;
+            border-bottom: 3px solid #fff;
         }
 
         .foo span:after {
             content: "";
-            border-top: 10px solid #fff;
-            top: 20px;
+            border-top: 3px solid #fff;
+            top: 6px;
             left: 0;
             width: 100%;
             position: absolute;
@@ -62,89 +64,77 @@
         }
 
         p {
-            margin: 50px 50px 20px;
+            margin: 20px 10px;
+        }
+
+        .wrapper {
+            overflow: hidden;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <p>single element:</p>
-    <ul class="list1">
-        <li>
-            element 1
-        </li>
-    </ul>
-    <p>multiple:</p>
-    <ul class="list2">
-        <li>
-            element 2
-        </li>
-        <li>
-            element 3
-        </li>
-    </ul>
-    <p>multiple with dependence:</p>
-    <ul class="list3">
-        <li>
-            element 4
-        </li>
-        <li>
-            element 5
-        </li>
-        <li>
-            element 6
-        </li>
-        <li>
-            element 7
-        </li>
-        <li>
-            element 8
-        </li>
-        <li>
-            element 9
-        </li>
-        <li>
-            element 10
-        </li>
-        <li>
-            element 11
-        </li>
-        <li>
-            element 12
-        </li>
-        <li>
-            element 13
-        </li>
-        <li>
-            element 14
-        </li>
-        <li>
-            element 15
-        </li>
-    </ul>
+    <div class="wrapper">
+        <ul class="list1">
+            <li>
+                &larr; swipe to delete
+            </li>
+            <li>
+                &larr; swipe to delete
+            </li>
+        </ul>
+        <p>multiple:</p>
+        <ul class="list2">
+            <li>
+                element 2
+            </li>
+            <li>
+                element 3
+            </li>
+        </ul>
+        <p>multiple with dependence:</p>
+        <ul class="list3">
+            <li>
+                element 4
+            </li>
+            <li>
+                element 5
+            </li>
+            <li>
+                element 6
+            </li>
+        </ul>
 
-    <p>single element with switch:</p>
-    <div class="foo"><span></span>element 16</div>
+        <p>single element with switch:</p>
+        <div class="foo"><span></span>element 16</div>
+    </div>
 <script>
     var a1 = Swiped.init({
         query: '.list1 li',
-        right: 500
+        right: 400,
+        onOpen: function() {
+            this.destroy(true)
+        },
+        onClose: function() {
+            console.log('close')
+        }
     });
 
     var a2 = Swiped.init({
         query: '.list2 li',
-        left: 300
+        left: 200
     });
 
     var a3 = Swiped.init({
         query: '.list3 li',
         list: true,
-        left: 200,
-        right: 200
+        left: 70,
+        right: 100
     });
 
     var a4 = Swiped.init({
         query: '.foo',
-        left: 400
+        left: 200
     });
 
     document.querySelector('.foo span').addEventListener('touchstart', function() {

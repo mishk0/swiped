@@ -18,6 +18,24 @@
         return '-' + pre + '-';
     })();
 
+    var transitionEvent = (function() {
+        var t,
+            el = document.createElement("fakeelement");
+
+        var transitions = {
+            "transition"      : "transitionend",
+            "OTransition"     : "oTransitionEnd",
+            "MozTransition"   : "transitionend",
+            "WebkitTransition": "webkitTransitionEnd"
+        };
+
+        for (t in transitions){
+            if (el.style[t] !== undefined){
+                return transitions[t];
+            }
+        }
+    })();
+
     var cssProps = {
         'transition': prefix + 'transition',
         'transform': prefix + 'transform'
@@ -49,44 +67,58 @@
         return current;
     }
 
-    var Swiped = function(options) {
+    var fn = function() {};
+
+    var Swiped = function(o) {
         var defaultOptions = {
             duration: 200,
-            tolerance: 150,
+            tolerance: 50,
             time: 200,
             dir: 1,
             right: 0,
             left: 0
         };
 
-        options = extend(defaultOptions, options || {});
+        o = extend(defaultOptions, o || {});
 
-        this.duration = options.duration;
-        this.tolerance = options.tolerance;
-        this.time = options.time;
-        this.width = options.left || options.right;
-        this.elem = options.elem;
-        this.list = options.list;
-        this.dir = options.dir;
-        this.group = options.group;
+        this.duration = o.duration;
+        this.tolerance = o.tolerance;
+        this.time = o.time;
+        this.width = o.left || o.right;
+        this.elem = o.elem;
+        this.list = o.list;
+        this.dir = o.dir;
+        this.group = o.group;
+        this.id = Swiped.elemId++;
+        
+        this.onOpen = typeof o.onOpen === 'function' ? o.onOpen : fn;
+        this.onClose = typeof o.onClose === 'function' ? o.onClose : fn;
 
-        this.right = options.right;
-        this.left = options.left;
+        this.right = o.right;
+        this.left = o.left;
+
+        if (
+            (o.right > 0 && o.tolerance > o.right) ||
+            (o.left > 0 && o.tolerance > o.left)
+        ) {
+            console.warn('tolerance must be less then left and right');
+        }
     };
 
     Swiped._elems = [];
     Swiped.groupCounter = 0;
+    Swiped.elemId = 0;
 
-    Swiped.init = function(options) {
+    Swiped.init = function(o) {
         Swiped.groupCounter++;
 
-        var elems = document.querySelectorAll(options.query);
+        var elems = document.querySelectorAll(o.query);
         var group = [];
 
-        delete options.query;
+        delete o.query;
 
         [].forEach.call(elems, function(elem){
-            var option = extend({elem: elem, group: Swiped.groupCounter}, options);
+            var option = extend({elem: elem, group: Swiped.groupCounter}, o);
 
             group.push(new Swiped(option));
         });
@@ -104,9 +136,20 @@
     Swiped._closeAll = function(groupNumber) {
         Swiped._elems.forEach(function(Swiped) {
             if (Swiped.group === groupNumber) {
-                Swiped.close();
+                Swiped.close(true);
             }
         });
+    };
+
+    Swiped.prototype.transitionEnd = function(node, cb) {
+        var that = this;
+
+        function trEnd() {
+            cb.call(that);
+            node.removeEventListener(transitionEvent, trEnd)
+        }
+
+        node.addEventListener(transitionEvent, trEnd);
     };
 
     /**
@@ -129,7 +172,7 @@
         if (this.list) {
             Swiped._closeAll(this.group);
         } else {
-            this.close();
+            this.close(true);
         }
     };
 
@@ -175,17 +218,25 @@
     /**
      * Animation of the opening
      */
-    Swiped.prototype.open = function() {
+    Swiped.prototype.open = function(isForce) {
         this.animation(this.dir * this.width);
         this.swiped = true;
+
+        if (!isForce) {
+            this.transitionEnd(this.elem, this.onOpen);
+        }
     };
 
     /**
      * Animation of the closing
      */
-    Swiped.prototype.close = function() {
+    Swiped.prototype.close = function(isForce) {
         this.animation(0);
         this.swiped = false;
+
+        if (!isForce) {
+            this.transitionEnd(this.elem, this.onClose);
+        }
     };
 
     Swiped.prototype.toggle = function() {
@@ -272,6 +323,20 @@
 
         this.elem.style.cssText = cssProps.transition + ':' + cssProps.transform + ' ' + duration + 'ms; ' +
         cssProps.transform  + ':' + 'translate3d(' + x + 'px, 0px, 0px)';
+    };
+
+    Swiped.prototype.destroy = function(isRemoveNode) {
+        var id = this.id;
+
+        Swiped._elems.forEach(function(elem, i) {
+            if (elem.id === id) {
+                Swiped._elems.splice(i, 1);
+            }
+        });
+
+        if (isRemoveNode) {
+            this.elem.parentNode.removeChild(this.elem);
+        }
     };
 
     // expose Swiped
