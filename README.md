@@ -26,6 +26,8 @@ bower install swiped
 - `[options.left]` (number) - Distance for swipe from left to right. Default: `0`.
 - `[options.right]` (number) - Distance for swipe from right to left. Default: `0`.
 - `[options.list]` (boolean) - Elements depend on each other. Default: `false`.
+- `[options.onOpen]` (function).
+- `[options.onClose]` (function).
 
 
 ```js
@@ -34,6 +36,7 @@ var s = Swiped.init(options);
 s.open();
 s.close();
 s.toggle();
+s.destroy([isRemoveNode])
 ```
 
 ## Usage
@@ -89,5 +92,17 @@ var s3 = Swiped.init({
 
 document.querySelector('.foo span').addEventListener('touchstart', function() {
     s3.toggle();
+});
+```
+
+## Implementation for "swipe to delete"
+
+```js
+Swiped.init({
+    query: '.baz',
+    right: 400,
+    onOpen: function() {
+        this.destroy(true)
+    }
 });
 ```
