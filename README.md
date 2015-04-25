@@ -4,6 +4,9 @@
 
 
 [Demo](http://mishk0.github.io/swiped/) (use mobile or emulate touches mode on your browser)
+
+<img src="https://i.imgur.com/IyOYCJI.gif" width="250" alt="swiped.js">
+
 ## Installation
 
 ```
