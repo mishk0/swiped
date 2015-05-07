@@ -3,6 +3,8 @@
 [![npm](http://img.shields.io/npm/v/swiped.svg?style=flat)](https://www.npmjs.com/package/swiped)
 
 
+<img src="https://i.imgur.com/wcZFgGu.png" alt="swiped.js qrcode">
+
 [Demo](http://mishk0.github.io/swiped/) (use mobile or emulate touches mode on your browser)
 
 <img src="https://i.imgur.com/EUT9r0U.gif" alt="swiped.js">
