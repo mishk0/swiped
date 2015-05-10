@@ -1,3 +1,4 @@
+/*! github.com/mishk0/swiped v0.1.2  @license MIT */
 (function() {
     var msPointer = window.navigator.msPointerEnabled;
 
