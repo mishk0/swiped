@@ -77,7 +77,7 @@
     <div class="wrapper">
         <ul class="list1">
             <li>
-                &larr; swipe to delete
+                <span>&larr; swipe to delete</span>
             </li>
             <li>
                 &larr; swipe to delete
@@ -137,8 +137,11 @@
         left: 200
     });
 
-    document.querySelector('.foo span').addEventListener('touchstart', function() {
+    document.querySelector('.foo span').addEventListener('touchstart', function(e) {
         a4.toggle();
+
+        e.stopPropagation();
+        e.preventDefault();
     });
 </script>
 

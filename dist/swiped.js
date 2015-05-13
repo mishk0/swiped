@@ -44,8 +44,15 @@
     function delegate(event, cbName) {
         document.addEventListener(event, function(e) {
             Swiped._elems.forEach(function(Swiped){
-                if (e.target === Swiped.elem) {
-                    Swiped[cbName](e);
+                var target = e.target;
+
+                while (target) {
+                    if (target === Swiped.elem) {
+                        Swiped[cbName](e);
+
+                        return false;
+                    }
+                    target = target.parentNode;
                 }
 
                 return false;
@@ -163,11 +170,18 @@
      */
 
     Swiped.prototype.touchStart = function(e) {
+        var touch = e.changedTouches[0];
+
         if (e.touches.length !== 1) {
             return;
         }
 
-        this.resetValue(e);
+        this.touchId = touch.identifier;
+        this.x = touch.pageX;
+        this.y = touch.pageY;
+        this.startTime = new Date();
+
+        this.resetValue();
 
         if (this.list) {
             Swiped._closeAll(this.group);
@@ -225,6 +239,8 @@
         if (!isForce) {
             this.transitionEnd(this.elem, this.onOpen);
         }
+
+        this.resetValue();
     };
 
     /**
@@ -237,6 +253,8 @@
         if (!isForce) {
             this.transitionEnd(this.elem, this.onClose);
         }
+
+        this.resetValue();
     };
 
     Swiped.prototype.toggle = function() {
@@ -249,18 +267,11 @@
 
     /**
      * reset to initial values
-     * @param {object} e - event
      */
-    Swiped.prototype.resetValue = function(e) {
-        var touch = e.changedTouches[0];
-
-        this.touchId = touch.identifier;
-        this.startTime = new Date();
+    Swiped.prototype.resetValue = function() {
         this.startSwipe = false;
         this.startScroll = false;
         this.delta = 0;
-        this.x = touch.pageX;
-        this.y = touch.pageY;
     };
 
     Swiped._bindEvents = function() {
