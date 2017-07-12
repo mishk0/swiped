@@ -58,7 +58,7 @@
                 return false;
             });
 
-        });
+        }, {passive: true});
     }
 
     function extend() {
@@ -156,7 +156,7 @@
             node.removeEventListener(transitionEvent, trEnd);
         }
 
-        node.addEventListener(transitionEvent, trEnd);
+        node.addEventListener(transitionEvent, trEnd, {passive: true});
     };
 
     /**
