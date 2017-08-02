@@ -345,7 +345,7 @@
             }
         });
 
-        if (isRemoveNode) {
+        if (isRemoveNode && this.elem.parentNone) {
             this.elem.parentNode.removeChild(this.elem);
         }
     };
